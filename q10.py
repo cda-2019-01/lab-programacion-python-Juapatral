@@ -15,3 +15,24 @@
 ## jjj,18
 ##
 ##
+
+import pandas as pd
+from itertools import chain
+# read file
+file = pd.read_csv('data.csv',sep='\t',header=None)
+
+# create needed data
+file['data'] = file[4].str.split(',')
+prueba = [[b.split(',') for b in a] for a in list(file['data'])]
+prueba2 = list(chain(*list(chain(*prueba))))
+
+# creates dataframe with needed data
+prueba3 = pd.DataFrame([a.split(':') for a in prueba2], columns = ['dic','value'])
+
+# split file
+prueba4 = prueba3.groupby('dic').count()['value']
+prueba2 = []
+for a in range(len(prueba4)):
+    prueba2.append(str(list(prueba4.index)[a]) + "," + str(list(prueba4)[a]))
+
+print("\n".join(prueba2))

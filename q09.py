@@ -17,3 +17,16 @@
 ## ('9', ['A', 'B', 'C', 'E'])
 ##
 ##
+
+
+import pandas as pd
+# read file
+file = pd.read_csv('data.csv',sep='\t',header=None)
+
+lista = []
+for i in range(10):
+    # lista las columnas, crea un conjunto sin repetidos
+    # lista el conjunto
+    lista.append(list(set(list(file[file[1]==i][0]))))
+    lista[i].sort()
+    print(tuple([str(i),lista[i]]))

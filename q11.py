@@ -11,3 +11,19 @@
 ## E,2,3
 ## E,3,3
 ##
+
+import pandas as pd
+
+# read file
+file = pd.read_csv('data.csv',sep='\t',header=None)
+
+# create columns
+file['largo3'] = [len(a) for a in file[3].str.split(',')]
+file['largo4'] = [len(a) for a in file[4].str.split(',')]
+file2 = file[[0,'largo3','largo4']]
+
+for i in range(len(file2)):
+    print(file2[0][i] + ',' + 
+    str(file2['largo3'][i]) + ',' + 
+    str(file2['largo4'][i])
+    )

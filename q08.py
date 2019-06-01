@@ -17,3 +17,14 @@
 ## ('9', ['A', 'B', 'C', 'E'])
 ##
 ##
+
+
+import pandas as pd
+# read file
+file = pd.read_csv('data.csv',sep='\t',header=None)
+
+lista = []
+for i in range(10):
+    lista.append(list(file[file[1]==i][0]))
+    lista[i].sort()
+    print(tuple([str(i),lista[i]]))
